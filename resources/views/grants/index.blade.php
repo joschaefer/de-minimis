@@ -35,7 +35,7 @@
                         </small>
                     </td>
                     <td>
-                        {{ $grant->category->name }}
+                        <x-badge color="secondary">{{ $grant->category->name }}</x-badge>
                     </td>
                     <td>
                         @can('view', $grant->company)
@@ -45,10 +45,10 @@
                         @endif
                     </td>
                     <td>
-                        {{ $grant->createdBy->name }}
+                        {{ $grant->created_by->name }}
                     </td>
                     <td class="text-end">
-                        {{ $grant->amount_formatted }}
+                        {{ \Illuminate\Support\Str::currency($grant->amount) }}
                     </td>
                 </tr>
             @endforeach

@@ -27,7 +27,7 @@
                 </li>
             </ul>
 
-            @can('viewAny', \App\Models\Company::class)
+            {{--@can('viewAny', \App\Models\Company::class)
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0" spellcheck="false" autocomplete="off">
                     <input type="search" id="search" class="form-control" placeholder="{{ __('Search') }}..." aria-label="Suche" list="search_suggestions">
                     <datalist id="search_suggestions">
@@ -36,7 +36,7 @@
                         @endforeach
                     </datalist>
                 </form>
-            @endcan
+            @endcan--}}
         </div>
     </div>
 </header>

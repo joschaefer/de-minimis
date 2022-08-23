@@ -14,7 +14,6 @@ use Illuminate\Support\Carbon;
  * @property string $id
  * @property string $description
  * @property float $amount
- * @property string $amount_formatted
  * @property Carbon $start
  * @property ?Carbon $end
  * @property Carbon $created_at
@@ -23,7 +22,7 @@ use Illuminate\Support\Carbon;
  * Relationships
  * @property-read ?Category $category
  * @property-read Company $company
- * @property-read User $createdBy
+ * @property-read User $created_by
  */
 class Grant extends Model
 {
@@ -52,14 +51,9 @@ class Grant extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function createdBy(): BelongsTo
+    public function created_by(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_id');
-    }
-
-    public function getAmountFormattedAttribute(): string
-    {
-        return number_format($this->amount, 2) . ' ' . config('app.currency');
     }
 
     public function scopeOrderByDate(Builder $query): Builder

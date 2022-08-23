@@ -36,7 +36,7 @@
                         @endforeach
                     </td>
                     <td class="text-end">
-                        {{ $company->grants()->sum('amount') }} {{ config('app.currency') }}
+                        {{ \Illuminate\Support\Str::currency($company->grants()->sum('amount')) }}
                     </td>
                 </tr>
             @endforeach

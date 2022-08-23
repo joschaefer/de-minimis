@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->date('founded_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
