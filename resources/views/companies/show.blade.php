@@ -36,7 +36,7 @@
 
     <h3 class="mt-5 mb-3">{{ __('Grants') }}</h3>
 
-    <table class="table" id="grants">
+    <table class="table align-middle" id="grants">
         <thead>
         <tr>
             <th>{{ __('Description') }}</th>

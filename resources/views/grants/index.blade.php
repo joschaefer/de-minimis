@@ -11,7 +11,7 @@
 
     <x-status :status="session('status')" class="mb-3" />
 
-    <table class="table" id="grants">
+    <table class="table align-middle" id="grants">
         <thead>
         <tr>
             <th>{{ __('Description') }}</th>
