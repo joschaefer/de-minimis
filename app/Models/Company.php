@@ -15,6 +15,8 @@ use Illuminate\Support\Collection;
  * @property string $id
  * @property string $name
  * @property ?Carbon $founded_at
+ * @property ?string $register_court
+ * @property ?string $register_number
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property ?Carbon $deleted_at

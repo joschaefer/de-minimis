@@ -12,6 +12,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->date('founded_at')->nullable();
+            $table->string('register_court')->nullable();
+            $table->string('register_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

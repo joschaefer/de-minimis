@@ -18,6 +18,8 @@ class CompanyFactory extends Factory
         return [
             'name' => fake()->company(),
             'founded_at' => fake()->optional(.9)->dateTimeBetween('-1 year', '-1 day'),
+            'register_court' => 'Amtsgericht ' . fake()->city(),
+            'register_number' => fake()->optional(.9)->numerify('HRB ######'),
         ];
     }
 }

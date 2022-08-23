@@ -20,6 +20,12 @@
         <dt class="col-sm-2">{{ __('Founded at') }}:</dt>
         <dd class="col-sm-10">{{ optional($company->founded_at)->isoFormat('L') ?? '–' }}</dd>
 
+        <dt class="col-sm-2">{{ __('Register court') }}:</dt>
+        <dd class="col-sm-10">{{ $company->register_court ?? '–' }}</dd>
+
+        <dt class="col-sm-2">{{ __('Register number') }}:</dt>
+        <dd class="col-sm-10">{{ $company->register_number ?? '–' }}</dd>
+
         <dt class="col-sm-2">{{ __('Contacts') }}:</dt>
         <dd class="col-sm-10">
             @foreach($company->contacts as $contact)
