@@ -9,7 +9,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="{{ $id }}Title">{{ $title }}</h5>
                 @if($dismissable)
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Abbrechen"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Cancel') }}"></button>
                 @endif
             </div>
             <div class="modal-body">
@@ -18,7 +18,7 @@
             <div class="modal-footer">
                 @isset($action)
                     @if($dismissable)
-                        <x-button color="secondary" data-bs-dismiss="modal">Abbrechen</x-button>
+                        <x-button color="secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</x-button>
                     @endif
                     <x-button color="success" type="submit">{{ $buttonText }}</x-button>
                 @else

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'currency' => env('APP_CURRENCY', 'EUR'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -15,7 +17,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'De-minimis tool'),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +71,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'Europe/Berlin'),
 
     /*
     |--------------------------------------------------------------------------

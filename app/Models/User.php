@@ -3,12 +3,27 @@
 namespace App\Models;
 
 use App\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property string $id
+ * @property string $last_name
+ * @property string $first_name
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property ?Carbon $deleted_at
+ * @property-read string $name
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasUuid, Notifiable, TwoFactorAuthenticatable;
@@ -37,4 +52,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getNameAttribute(): string
+    {
+        return $this->last_name . ', ' . $this->first_name;
+    }
+
+    public function grants(): HasMany
+    {
+        return $this->hasMany(Grant::class)->orderByDate();
+    }
+
+    public function scopeOrderByName(Builder $query): Builder
+    {
+        return $query->orderBy('last_name')->orderBy('first_name');
+    }
 }
