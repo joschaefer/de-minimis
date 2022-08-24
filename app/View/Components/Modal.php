@@ -10,15 +10,15 @@ class Modal extends Component
     public string $id;
     public string $title;
     public string $buttonText;
-    public bool $dismissable;
+    public bool $dismissible;
     public ?string $action;
 
-    public function __construct(string $id, string $title, ?string $buttonText = null, bool $dismissable = true, ?string $action = null)
+    public function __construct(string $id, string $title, ?string $buttonText = null, bool $dismissible = true, ?string $action = null)
     {
         $this->id = $id;
         $this->title = $title;
         $this->buttonText = $buttonText ?: ($action ? __('Save') : __('Close'));
-        $this->dismissable = $dismissable;
+        $this->dismissible = $dismissible;
         $this->action = $action;
     }
 

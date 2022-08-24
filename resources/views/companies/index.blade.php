@@ -47,23 +47,7 @@
 
     @can('create', \App\Models\Company::class)
         <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeCompanyModal">{{ __('Add company') }}</x-button>
-
-        <x-modal id="storeCompanyModal" action="{{ route('companies.store') }}" title="{{ __('Add company') }}">
-            <div class="mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="{{ __('e.g. Example Company GmbH') }}" maxlength="255" value="" autocomplete="off" autocapitalize="off" required>
-                    <label for="name">{{ __('Name') }}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="z.B. info@musterfirma.com" maxlength="100" value="" autocomplete="off" required>
-                        <label for="email">E-Mail-Adresse</label>
-                    </div>
-                </div>
-            </div>
-        </x-modal>
+        @include('companies.create')
 
         <x-modal id="importCompanyModal" action="{{ route('companies.store') }}" title="{{ __('Import company') }}">
             {{-- TODO --}}

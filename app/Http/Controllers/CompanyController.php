@@ -25,6 +25,9 @@ class CompanyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255|unique:companies',
+            'founded_at' => 'nullable|date',
+            'register_court' => 'nullable|max:255',
+            'register_number' => 'nullable|max:100',
         ]);
 
         $company = new Company($validated);

@@ -36,45 +36,54 @@
 
     <h3 class="mt-5 mb-3">{{ __('Grants') }}</h3>
 
-    <table class="table align-middle" id="grants">
-        <thead>
-        <tr>
-            <th>{{ __('Description') }}</th>
-            <th>{{ __('Category') }}</th>
-            <th>{{ __('Created by') }}</th>
-            <th class="text-end">{{ __('Amount') }}</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach($company->grants as $grant)
-                <tr data-search-value="{{ mb_strtolower($grant->company->name) }}">
-                    <td>
-                        {{ $grant->description }}<br>
-                        <small class="text-muted">
-                            @if($grant->isPeriod())
-                                {{ __('Grant period') }}: {{ $grant->start->isoFormat('L') }} – {{ $grant->end->isoFormat('L') }}
-                            @else
-                                {{ __('Grant date') }}: {{ $grant->start->isoFormat('L') }}
-                            @endif
-                        </small>
-                    </td>
-                    <td>
-                        <x-badge color="secondary">{{ $grant->category->name }}</x-badge>
-                    </td>
-                    <td>
-                        {{ $grant->created_by->name }}
-                    </td>
-                    <td class="text-end">
-                        {{ \Illuminate\Support\Str::currency($grant->amount) }}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        <tfoot>
-            <tr class="bg-light">
-                <th colspan="3">{{ __('Sum') }}:</th>
-                <td class="text-end">{{ \Illuminate\Support\Str::currency($company->grants->sum('amount')) }}</td>
+    @if($company->grants->isEmpty())
+        <p class="text-muted">{{ __('No grants yet.') }}</p>
+    @else
+        <table class="table align-middle" id="grants">
+            <thead>
+            <tr>
+                <th>{{ __('Description') }}</th>
+                <th>{{ __('Category') }}</th>
+                <th>{{ __('Created by') }}</th>
+                <th class="text-end">{{ __('Amount') }}</th>
             </tr>
-        </tfoot>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($company->grants as $grant)
+                    <tr data-search-value="{{ mb_strtolower($grant->company->name) }}">
+                        <td>
+                            {{ $grant->description }}<br>
+                            <small class="text-muted">
+                                @if($grant->isPeriod())
+                                    {{ __('Grant period') }}: {{ $grant->start->isoFormat('L') }} – {{ $grant->end->isoFormat('L') }}
+                                @else
+                                    {{ __('Grant date') }}: {{ $grant->start->isoFormat('L') }}
+                                @endif
+                            </small>
+                        </td>
+                        <td>
+                            <x-badge color="secondary">{{ $grant->category->name }}</x-badge>
+                        </td>
+                        <td>
+                            {{ $grant->created_by->name }}
+                        </td>
+                        <td class="text-end">
+                            {{ \Illuminate\Support\Str::currency($grant->amount) }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr class="bg-light">
+                    <th colspan="3">{{ __('Sum') }}:</th>
+                    <td class="text-end">{{ \Illuminate\Support\Str::currency($company->grants->sum('amount')) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    @endif
+
+    @can('create', \App\Models\Grant::class)
+        <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
+        @include('grants.create', ['company' => $company])
+    @endcan
 </x-base-layout>

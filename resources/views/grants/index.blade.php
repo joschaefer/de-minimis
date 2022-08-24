@@ -58,11 +58,8 @@
     <p class="text-muted"><span id="counter">{{ $grants->count() }}</span> {{ __('grants found') }}.</p>
 
     @can('create', \App\Models\Grant::class)
-        <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeCompanyModal">{{ __('Add grant') }}</x-button>
-
-        <x-modal id="storeCompanyModal" action="{{ route('grants.store') }}" title="{{ __('Add grant') }}">
-            {{-- TODO --}}
-        </x-modal>
+        <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
+        @include('grants.create')
     @endcan
 
     <script>
