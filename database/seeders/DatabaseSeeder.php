@@ -15,20 +15,42 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()
             ->create([
-                 'last_name' => 'Doe',
-                 'first_name' => 'John',
+                 'last_name' => 'Mustermann',
+                 'first_name' => 'Max',
                  'email' => 'test@example.com',
             ]);
 
         User::factory(3)
             ->create();
 
-        Category::factory(3)
-            ->create();
+        Category::factory()
+            ->create([
+                'name' => 'Miete',
+            ]);
+
+        Category::factory()
+            ->create([
+                'name' => 'Beratung',
+            ]);
+
+        Category::factory()
+            ->create([
+                'name' => 'Verbrauchsmaterial',
+            ]);
+
+        Category::factory()
+            ->create([
+                'name' => 'Maschinennutzung',
+            ]);
+
+        Category::factory()
+            ->create([
+                'name' => 'Sonstiges',
+            ]);
 
         Company::factory(5)
-            ->has(Contact::factory(mt_rand(1, 3)))
-            ->has(Grant::factory(mt_rand(2, 5)))
+            ->has(Contact::factory(2))
+            ->has(Grant::factory(3))
             ->create();
     }
 }
