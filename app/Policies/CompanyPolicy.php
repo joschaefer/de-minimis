@@ -28,7 +28,7 @@ class CompanyPolicy
 
     public function update(User $user, Company $company): Response|bool
     {
-        return true;
+        return false;
     }
 
     public function delete(User $user, Company $company): Response|bool
