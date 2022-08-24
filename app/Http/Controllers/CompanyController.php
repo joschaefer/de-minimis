@@ -28,10 +28,24 @@ class CompanyController extends Controller
             'founded_at' => 'nullable|date',
             'register_court' => 'nullable|max:255',
             'register_number' => 'nullable|max:100',
+            'last_names' => 'array|min:1',
+            'last_names.*' => 'max:100',
+            'first_names' => 'array|min:1',
+            'first_names.*' => 'max:100',
+            'emails' => 'array|min:1',
+            'emails.*' => 'email|max:255',
         ]);
 
         $company = new Company($validated);
         $company->save();
+
+        for ($i = 0; $i < count($validated['last_names']); $i++) {
+            $company->contacts()->create([
+                'last_name' => $validated['last_names'][$i],
+                'first_name' => $validated['first_names'][$i],
+                'email' => $validated['emails'][$i],
+            ]);
+        }
 
         return redirect()->route('companies.show', $company)->with('success', 'Company saved.');
     }

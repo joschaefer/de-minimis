@@ -28,7 +28,7 @@ class Grant extends Model
 {
     use HasFactory, HasUuid, SoftDeletes;
 
-    public $fillable = ['description', 'value', 'start', 'end', 'category_id'];
+    public $fillable = ['description', 'amount', 'start', 'end', 'category_id'];
 
     public $casts = [
         'value' => 'decimal:2',

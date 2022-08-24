@@ -28,12 +28,12 @@ class GrantController extends Controller
             'description' => 'required|max:255',
             'amount' => 'required|numeric',
             'start' => 'required|date:Y-m-d',
-            'end' => 'required|date:Y-m-d|after:start',
+            'end' => 'nullable|date:Y-m-d|after:start',
             'category_id' => 'required|exists:categories,id',
         ]);
 
         $grant = new Grant($validated);
-        $grant->createdBy()->associate($request->user());
+        $grant->created_by()->associate($request->user());
         $company->grants()->save($grant);
 
         return redirect()->route('companies.show', $company)->with('success', 'Grant saved.');

@@ -28,7 +28,7 @@ class Company extends Model
 {
     use HasFactory, HasUuid, SoftDeletes;
 
-    public $fillable = ['name', 'founded_at'];
+    public $fillable = ['name', 'founded_at', 'register_court', 'register_number'];
 
     public $casts = [
         'founded_at' => 'date:Y-m-d',

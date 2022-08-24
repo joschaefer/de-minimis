@@ -14,13 +14,13 @@
         </div>
         <div class="col-4">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="register_court" id="register_court" list="register_courts" placeholder="{{ __('e.g. Amtsgericht Aachen') }}" maxlength="255" value="{{ old('register_court') }}" autocomplete="off">
+                <input type="text" class="form-control" name="register_court" id="register_court" list="register_courts" placeholder="{{ __('e.g. Amtsgericht Aachen') }}" maxlength="255" value="{{ old('register_court') }}" autocomplete="off" autocapitalize="off" spellcheck="false">
                 <label for="register_court">{{ __('Register court') }}</label>
             </div>
         </div>
         <div class="col-4">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="register_number" id="register_number" placeholder="{{ __('e.g. HRB 12345') }}" maxlength="100" value="{{ old('register_number') }}" autocomplete="off">
+                <input type="text" class="form-control" name="register_number" id="register_number" placeholder="{{ __('e.g. HRB 12345') }}" maxlength="100" value="{{ old('register_number') }}" autocomplete="off" autocapitalize="off" spellcheck="false">
                 <label for="register_number">{{ __('Register number') }}</label>
             </div>
         </div>
@@ -32,13 +32,13 @@
             <div class="row mt-3">
                 <div class="col-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="last_names[]" id="last_name" placeholder="{{ __('Last name') }}" maxlength="100" value="" autocomplete="off" required>
+                        <input type="text" class="form-control" name="last_names[]" id="last_name" placeholder="{{ __('Last name') }}" maxlength="100" value="" autocomplete="off" spellcheck="false" required>
                         <label for="last_name">{{ __('Last name') }}</label>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="first_names[]" id="first_name" placeholder="{{ __('First name') }}" maxlength="100" value="" autocomplete="off" required>
+                        <input type="text" class="form-control" name="first_names[]" id="first_name" placeholder="{{ __('First name') }}" maxlength="100" value="" autocomplete="off" spellcheck="false" required>
                         <label for="first_name">{{ __('First name') }}</label>
                     </div>
                 </div>
@@ -699,7 +699,7 @@
     <option>Amtsgericht Witten</option>
     <option>Amtsgericht Wittlich</option>
     <option>Amtsgericht Wittmund</option>
-    <option>Amtsgericht WOberlandesgerichtast</option>
+    <option>Amtsgericht Wolgast</option>
     <option>Amtsgericht Wolfach</option>
     <option>Amtsgericht Wolfenbüttel</option>
     <option>Amtsgericht Wolfratshausen</option>

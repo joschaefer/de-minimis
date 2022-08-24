@@ -32,7 +32,7 @@
                     </td>
                     <td>
                         @foreach($company->contacts as $contact)
-                            <a href="{{ route('contacts.show', $contact) }}" class="text-muted">{{ $contact->name }}</a><br>
+                            <a href="mailto:{{ $contact->email }}" class="text-muted">{{ $contact->name }}</a><br>
                         @endforeach
                     </td>
                     <td class="text-end">
