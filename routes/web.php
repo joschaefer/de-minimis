@@ -15,3 +15,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/grants', [GrantController::class, 'index'])->name('grants.index');
     Route::post('/grants', [GrantController::class, 'store'])->name('grants.store');
 });
+
+Route::get('/companies/{company}/preview', [GrantController::class, 'preview'])
+    ->name('grants.preview')
+    ->middleware('signed');

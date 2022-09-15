@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\URL;
 
 /**
  * @property string $id
@@ -47,5 +48,21 @@ class Company extends Model
     public function scopeOrderByName(Builder $query): Builder
     {
         return $query->orderBy('name');
+    }
+
+    public function getReportAttribute(): string
+    {
+        $to = $this->contacts->pluck('email')->join(',');
+        $query = [
+            'subject' => __('De-minimis report for :company', ['company' => $this->name]),
+            'body' => __("Hi :names,\n\nYou can view the current de-minimis grants for :company at any time by clicking on the following link:\n\n:link\n\nBest regards,\n:name", [
+                'names' => $this->contacts->pluck('first_name')->join(', hi '),
+                'company' => $this->name,
+                'link' => URL::signedRoute('grants.preview', ['company' => $this]),
+                'name' => auth()->user()->first_name,
+            ]),
+        ];
+
+        return sprintf('mailto:%s?%s', $to, http_build_query($query, '', null, PHP_QUERY_RFC3986));
     }
 }

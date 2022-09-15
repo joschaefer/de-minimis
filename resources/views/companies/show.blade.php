@@ -32,6 +32,11 @@
                 <a href="mailto:{{ $contact->email }}" class="text-muted">{{ $contact->name }}</a><br>
             @endforeach
         </dd>
+
+        <dt class="col-sm-2">{{ __('Report') }}:</dt>
+        <dd class="col-sm-10">
+            <a href="{{ $company->report }}" class="btn btn-outline-secondary btn-sm">{{ __('Send report') }}</a>
+        </dd>
     </dl>
 
     <h3 class="mt-5 mb-3">{{ __('Grants') }}</h3>

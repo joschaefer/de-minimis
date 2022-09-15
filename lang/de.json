@@ -58,5 +58,12 @@
     "Add another contact": "Weiteren Kontakt hinzufügen",
     "Edit": "Bearbeiten",
     "No grants yet.": "Keine Zuwendungen bisher.",
-    "Sum": "Summe"
+    "Sum": "Summe",
+    "De-minimis report": "De-minimis-Bericht",
+    "De-minimis report for :company": "De-minimis-Bericht für :company",
+    "If you have any questions, please contact <a href=\"mailto::email\" class=\"alert-link\">:email</a>.": "Falls du Fragen hast, kontaktiere bitte <a href=\"mailto::email\" class=\"alert-link\">:email</a>.",
+    "Hi :names,\n\nYou can view the current de-minimis grants for :company at any time by clicking on the following link:\n\n:link\n\nBest regards,\n:name": "Hi :names,\n\nihr könnt die aktuellen De-minimis-Zuwendungen für :company jederzeit unter folgendem Link einsehen:\n\n:link\n\nViele Grüße,\n:name",
+    "Report": "Bericht",
+    "Send report": "Bericht senden",
+    "As of": "Stand"
 }

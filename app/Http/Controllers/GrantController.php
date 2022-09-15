@@ -10,8 +10,15 @@ use Illuminate\View\View;
 
 class GrantController extends Controller
 {
-    public function index(): View
+    public function index(?Company $company = null): View
     {
+        if ($company) {
+            return view('grants.index', [
+                'company' => $company,
+                'grants' => $company->grants,
+            ]);
+        }
+
         return view('grants.index', [
             'grants' => Grant::all(),
         ]);
@@ -64,5 +71,12 @@ class GrantController extends Controller
         $grant->delete();
 
         return redirect()->route('companies.show', $grant->company)->with('success', 'Grant deleted.');
+    }
+
+    public function preview(Company $company): View
+    {
+        return view('grants.preview', [
+            'company' => $company,
+        ]);
     }
 }
