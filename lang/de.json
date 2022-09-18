@@ -65,5 +65,11 @@
     "Hi :names,\n\nYou can view the current de-minimis grants for :company at any time by clicking on the following link:\n\n:link\n\nBest regards,\n:name": "Hi :names,\n\nihr könnt die aktuellen De-minimis-Zuwendungen für :company jederzeit unter folgendem Link einsehen:\n\n:link\n\nViele Grüße,\n:name",
     "Report": "Bericht",
     "Send report": "Bericht senden",
-    "As of": "Stand"
+    "As of": "Stand",
+    "Users": "Benutzer:innen",
+    "Add user": "Benutzer:in hinzufügen",
+    "users found": "Benutzer:innen gefunden",
+    "User saved": "Benutzer:in gespeichert",
+    "Grant saved": "Zuwendung gespeichert",
+    "Company saved": "Firma gespeichert"
 }

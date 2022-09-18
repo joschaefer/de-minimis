@@ -5,7 +5,7 @@
             @isset($company)
                 <option value="{{ $company->id }}" selected>{{ $company->name }}</option>
             @else
-                @foreach(\App\Models\Company::all() as $company)
+                @foreach(\App\Models\Company::query()->orderBy('name')->get() as $company)
                     <option value="{{ $company->id }}" @if(old('company_id') === $company->id) selected @endif>{{ $company->name }}</option>
                 @endforeach
             @endisset
@@ -15,7 +15,7 @@
     <div class="form-floating mb-3">
         <select name="category_id" class="form-select" aria-label="{{ __('Category') }}" required>
             <option value="" disabled hidden>{{ __('Please select') }}</option>
-            @foreach(\App\Models\Category::all() as $category)
+            @foreach(\App\Models\Category::query()->orderBy('name')->get() as $category)
                 <option value="{{ $category->id }}" @if(old('category_id') === $category->id) selected @endif>{{ $category->name }}</option>
             @endforeach
         </select>

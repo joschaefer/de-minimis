@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         return view('categories.index', [
-            'categories' => Category::all(),
+            'categories' => Category::query()->orderByName()->get(),
         ]);
     }
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
         $category = new Category($validated);
         $category->save();
 
-        return redirect()->route('categories.show', $category)->with('success', 'Category saved.');
+        return redirect()->route('categories.show', $category)->with('success', __('Category saved.'));
     }
 
     public function show(Category $category): View
@@ -51,13 +51,13 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return redirect()->route('categories.show', $category)->with('success', 'Category updated.');
+        return redirect()->route('categories.show', $category)->with('success', __('Category updated.'));
     }
 
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted.');
+        return redirect()->route('categories.index')->with('success', __('Category deleted.'));
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -12,7 +14,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('users.index', [
-            'users' => User::all(),
+            'users' => User::query()->orderByName()->get(),
         ]);
     }
 
@@ -29,10 +31,16 @@ class UserController extends Controller
             'first_name' => 'required|max:255',
         ]);
 
+        $password = Str::random();
+
         $user = new User($validated);
+        $user->password = Hash::make($password);
         $user->save();
 
-        return redirect()->route('users.show', $user)->with('success', 'User saved.');
+        return redirect()->route('users.index')
+            ->with('success', __('User saved.'))
+            ->with('user', $user)
+            ->with('password', $password);
     }
 
     public function show(User $user): View
@@ -53,13 +61,13 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('users.show', $user)->with('success', 'User updated.');
+        return redirect()->route('users.show', $user)->with('success', __('User updated.'));
     }
 
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted.');
+        return redirect()->route('users.index')->with('success', __('User deleted.'));
     }
 }

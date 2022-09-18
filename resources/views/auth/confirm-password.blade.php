@@ -34,7 +34,7 @@
             <h1 class="h3 mb-3 fw-normal">Bitte Passwort bestätigen</h1>
             <p class="small text-muted">Als zusätzliche Sicherheitsmaßnahme musst Du zunächst Dein aktuelles Passwort eingeben.</p>
 
-            <div class="form-floating">
+            <div class="form-floating text-start">
                 <input type="password" name="password" class="form-control" id="password" placeholder="Passwort" autocomplete="current-password" required>
                 <label for="password">Passwort</label>
             </div>

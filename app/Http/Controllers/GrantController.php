@@ -20,7 +20,7 @@ class GrantController extends Controller
         }
 
         return view('grants.index', [
-            'grants' => Grant::all(),
+            'grants' => Grant::query()->orderByDate()->get(),
         ]);
     }
 
@@ -43,7 +43,7 @@ class GrantController extends Controller
         $grant->created_by()->associate($request->user());
         $company->grants()->save($grant);
 
-        return redirect()->route('companies.show', $company)->with('success', 'Grant saved.');
+        return redirect()->route('companies.show', $company)->with('success', __('Grant saved.'));
     }
 
     public function edit(Grant $grant): View
@@ -63,14 +63,14 @@ class GrantController extends Controller
 
         $grant->update($validated);
 
-        return redirect()->route('companies.show', $grant->company)->with('success', 'Grant updated.');
+        return redirect()->route('companies.show', $grant->company)->with('success', __('Grant updated.'));
     }
 
     public function destroy(Grant $grant): RedirectResponse
     {
         $grant->delete();
 
-        return redirect()->route('companies.show', $grant->company)->with('success', 'Grant deleted.');
+        return redirect()->route('companies.show', $grant->company)->with('success', __('Grant deleted.'));
     }
 
     public function preview(Company $company): View

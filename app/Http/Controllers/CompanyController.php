@@ -12,7 +12,7 @@ class CompanyController extends Controller
     public function index(): View
     {
         return view('companies.index', [
-            'companies' => Company::all(),
+            'companies' => Company::query()->orderByName()->get(),
         ]);
     }
 
@@ -47,7 +47,7 @@ class CompanyController extends Controller
             ]);
         }
 
-        return redirect()->route('companies.show', $company)->with('success', 'Company saved.');
+        return redirect()->route('companies.show', $company)->with('success', __('Company saved.'));
     }
 
     public function show(Company $company): View
@@ -68,13 +68,13 @@ class CompanyController extends Controller
 
         $company->update($validated);
 
-        return redirect()->route('companies.show', $company)->with('success', 'Company updated.');
+        return redirect()->route('companies.show', $company)->with('success', __('Company updated.'));
     }
 
     public function destroy(Company $company): RedirectResponse
     {
         $company->delete();
 
-        return redirect()->route('companies.index')->with('success', 'Company deleted.');
+        return redirect()->route('companies.index')->with('success', __('Company deleted.'));
     }
 }

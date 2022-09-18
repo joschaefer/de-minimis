@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function getNameAttribute(): string
     {
         return $this->last_name . ', ' . $this->first_name;
+    }
+
+    public function setEmailAttribute(string $value)
+    {
+        $this->attributes['email'] = Str::lower($value);
     }
 
     public function grants(): HasMany

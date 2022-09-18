@@ -13,7 +13,7 @@ class ContactController extends Controller
     public function index(): View
     {
         return view('contacts.index', [
-            'contacts' => Contact::all(),
+            'contacts' => Contact::query()->orderByName()->get(),
         ]);
     }
 
@@ -33,7 +33,7 @@ class ContactController extends Controller
         $contact = new Contact($validated);
         $company->contacts()->save($contact);
 
-        return redirect()->route('companies.show', $company)->with('success', 'Contact saved.');
+        return redirect()->route('companies.show', $company)->with('success', __('Contact saved.'));
     }
 
     public function edit(Contact $contact): View
@@ -51,13 +51,13 @@ class ContactController extends Controller
 
         $contact->update($validated);
 
-        return redirect()->route('companies.show', $contact->company)->with('success', 'Contact updated.');
+        return redirect()->route('companies.show', $contact->company)->with('success', __('Contact updated.'));
     }
 
     public function destroy(Contact $contact): RedirectResponse
     {
         $contact->delete();
 
-        return redirect()->route('companies.show', $contact->company)->with('success', 'Contact deleted.');
+        return redirect()->route('companies.show', $contact->company)->with('success', __('Contact deleted.'));
     }
 }

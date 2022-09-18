@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Company;
 use App\Models\Contact;
 use App\Models\Grant;
@@ -13,6 +12,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call(CategorySeeder::class);
+
         User::factory()
             ->create([
                  'last_name' => 'Mustermann',
@@ -22,31 +23,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory(3)
             ->create();
-
-        Category::factory()
-            ->create([
-                'name' => 'Miete',
-            ]);
-
-        Category::factory()
-            ->create([
-                'name' => 'Beratung',
-            ]);
-
-        Category::factory()
-            ->create([
-                'name' => 'Verbrauchsmaterial',
-            ]);
-
-        Category::factory()
-            ->create([
-                'name' => 'Maschinennutzung',
-            ]);
-
-        Category::factory()
-            ->create([
-                'name' => 'Sonstiges',
-            ]);
 
         Company::factory(5)
             ->has(Contact::factory(2))

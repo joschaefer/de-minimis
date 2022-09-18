@@ -45,12 +45,12 @@
 
             <h1 class="h3 mb-3 fw-normal">{{ __('Please log in') }}</h1>
 
-            <div class="form-floating">
+            <div class="form-floating text-start">
                 <input type="email" name="email" class="form-control" id="email" placeholder="{{ __('name@example.com') }}" value="{{ old('email') }}" autocomplete="username" spellcheck="false" required autofocus>
                 <label for="email">{{ __('Email address') }}</label>
             </div>
 
-            <div class="form-floating">
+            <div class="form-floating text-start">
                 <input type="password" name="password" class="form-control" id="password" placeholder="{{ __('Password') }}" autocomplete="current-password" required>
                 <label for="password">{{ __('Password') }}</label>
             </div>
