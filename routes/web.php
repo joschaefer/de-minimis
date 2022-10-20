@@ -14,8 +14,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('companies.contacts', Contact::class)->shallow();
     Route::resource('companies.grants', GrantController::class)->shallow();
+    Route::post('/companies/{company}/grants/import', [GrantController::class, 'import'])->name('companies.grants.import');
     Route::get('/grants', [GrantController::class, 'index'])->name('grants.index');
     Route::post('/grants', [GrantController::class, 'store'])->name('grants.store');
+    Route::post('/grants/import', [GrantController::class, 'import'])->name('grants.import');
 });
 
 Route::get('/companies/{company}/preview', [GrantController::class, 'preview'])
