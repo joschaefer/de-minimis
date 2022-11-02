@@ -1,7 +1,7 @@
 <div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}Title" aria-hidden="true" @if(!$dismissible) data-bs-backdrop="static" data-bs-keyboard="false" @endif>
     <div class="modal-dialog modal-dialog-centered modal-lg">
         @isset($action)
-            <form class="modal-content" action="{{ $action }}" method="POST" accept-charset="UTF-8" id="{{ $id }}Form">
+            <form class="modal-content" action="{{ $action }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" id="{{ $id }}Form">
                 @csrf
         @else
             <div class="modal-content">

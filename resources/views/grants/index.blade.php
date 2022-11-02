@@ -60,5 +60,7 @@
     @can('create', \App\Models\Grant::class)
         <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
         @include('grants.create')
+        <x-button color="outline-success" data-bs-toggle="modal" data-bs-target="#importGrantsModal">{{ __('Import grants') }}</x-button>
+        @include('grants.import')
     @endcan
 </x-base-layout>

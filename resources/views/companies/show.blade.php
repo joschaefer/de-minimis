@@ -10,7 +10,7 @@
         @endcan
     </header>
 
-    <x-status :status="session('status')" class="mb-3" />
+    <x-status :status="session('success')" class="mb-3" />
     <x-errors :errors="$errors" class="mb-3" />
 
     <dl class="row">
@@ -90,5 +90,7 @@
     @can('create', \App\Models\Grant::class)
         <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
         @include('grants.create', ['company' => $company])
+        <x-button color="outline-success" data-bs-toggle="modal" data-bs-target="#importGrantsModal">{{ __('Import grants') }}</x-button>
+        @include('grants.import', ['company' => $company])
     @endcan
 </x-base-layout>

@@ -69,7 +69,11 @@
     "Users": "Benutzer:innen",
     "Add user": "Benutzer:in hinzufügen",
     "users found": "Benutzer:innen gefunden",
-    "User saved": "Benutzer:in gespeichert",
-    "Grant saved": "Zuwendung gespeichert",
-    "Company saved": "Firma gespeichert"
+    "User saved.": "Benutzer:in gespeichert.",
+    "Grant saved.": "Zuwendung gespeichert.",
+    "Grants imported.": "Zuwendungen importiert.",
+    "Company saved.": "Firma gespeichert.",
+    "Import grants": "Zuwendungen importieren",
+    "Import": "Importieren",
+    "Could not read file.": "Datei konnte nicht gelesen werden."
 }
