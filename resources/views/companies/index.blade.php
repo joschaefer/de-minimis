@@ -3,7 +3,7 @@
         <h1>{{ __('Companies') }}</h1>
         @can('create', \App\Models\Company::class)
             <div class="d-flex align-items-center gap-2">
-                <input type="search" id="search" class="form-control" placeholder="{{ __('Search') }}..." autocomplete="off" autocapitalize="off" aria-label="{{ __('Search company') }}">
+                <input type="search" data-search="companies" class="form-control" placeholder="{{ __('Search') }}..." autocomplete="off" autocapitalize="off" aria-label="{{ __('Search company') }}">
                 <x-button color="success" class="flex-shrink-0" data-bs-toggle="modal" data-bs-target="#storeCompanyModal">{{ __('Add company') }}</x-button>
                 {{--<x-button color="secondary" class="flex-shrink-0" data-bs-toggle="modal" data-bs-target="#importCompanyModal">{{ __('Import company') }}</x-button>--}}
             </div>
@@ -53,23 +53,4 @@
             {{-- TODO --}}
         </x-modal>
     @endcan
-
-    <script>
-        const list = document.getElementById('companies');
-        const counter = document.getElementById('counter');
-
-        document.querySelectorAll('#search').forEach((elem) => elem.addEventListener('input', (e) => {
-            let query = e.target.value.toLowerCase();
-            let i = 0;
-            list.querySelectorAll('tbody tr').forEach((item) => {
-                if (item.dataset.searchValue.indexOf(query) > -1) {
-                    item.classList.remove('d-none');
-                    i++;
-                } else {
-                    item.classList.add('d-none');
-                }
-            })
-            counter.innerText = i.toString();
-        }));
-    </script>
 </x-base-layout>

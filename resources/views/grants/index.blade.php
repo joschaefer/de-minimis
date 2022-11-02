@@ -3,7 +3,7 @@
         <h1>{{ __('Grants') }}</h1>
         @can('create', \App\Models\Grant::class)
             <div class="d-flex align-items-center gap-2">
-                <input type="search" id="search" class="form-control" placeholder="{{ __('Search') }}..." autocomplete="off" autocapitalize="off" aria-label="{{ __('Search company') }}">
+                <input type="search" data-search="grants" class="form-control" placeholder="{{ __('Search') }}..." autocomplete="off" autocapitalize="off" aria-label="{{ __('Search company') }}">
                 <x-button color="success" class="flex-shrink-0" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
             </div>
         @endcan
@@ -61,23 +61,4 @@
         <x-button color="success" data-bs-toggle="modal" data-bs-target="#storeGrantModal">{{ __('Add grant') }}</x-button>
         @include('grants.create')
     @endcan
-
-    <script>
-        const list = document.getElementById('grants');
-        const counter = document.getElementById('counter');
-
-        document.querySelectorAll('#search').forEach((elem) => elem.addEventListener('input', (e) => {
-            let query = e.target.value.toLowerCase();
-            let i = 0;
-            list.querySelectorAll('tbody tr').forEach((item) => {
-                if (item.dataset.searchValue.indexOf(query) > -1) {
-                    item.classList.remove('d-none');
-                    i++;
-                } else {
-                    item.classList.add('d-none');
-                }
-            })
-            counter.innerText = i.toString();
-        }));
-    </script>
 </x-base-layout>

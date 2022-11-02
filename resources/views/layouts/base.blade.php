@@ -2,8 +2,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <title>{{ config('app.name') }}</title>
+    @vite(['resources/js/app.js'])
 </head>
 <body>
 <header class="p-3 mb-5 border-bottom bg-light">
@@ -48,12 +48,10 @@
     {{ $slot }}
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <span class="text-muted">© {{ date('Y') }} Johannes Schäfer</span>
-        <a href="mailto:mail@johannes-schaefer.de" class="text-muted">{{ __('Contact') }}</a>
+        <small class="text-muted">© {{ date('Y') }} {{ config('app.copyright') }}</small>
+        <small><a href="mailto:mail@johannes-schaefer.de" class="text-muted">{{ __('Support') }}</a></small>
     </footer>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js" integrity="sha512-9GacT4119eY3AcosfWtHMsT5JyZudrexyEVzTBWV3viP/YfB9e2pEy3N7WXL3SV6ASXpTU0vzzSxsbfsuUH4sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 </html>

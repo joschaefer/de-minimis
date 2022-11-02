@@ -18,7 +18,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'De-minimis tool'),
+    'copyright' => env('APP_COPYRIGHT', ''),
     'email' => env('APP_EMAIL', ''),
+    'support' => env('APP_SUPPORT', ''),
 
     /*
     |--------------------------------------------------------------------------
