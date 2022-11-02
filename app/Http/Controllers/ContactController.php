@@ -13,7 +13,7 @@ class ContactController extends Controller
     public function index(): View
     {
         return view('contacts.index', [
-            'contacts' => Contact::query()->w->get(),
+            'contacts' => Contact::query()->get(),
         ]);
     }
 
