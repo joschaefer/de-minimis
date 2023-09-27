@@ -8,7 +8,7 @@ Tool for managing de-minimis grants.
 - create `.env` file with all environment specific configuration
 - ``php artisan key:generate`` to generate a unique app secret key
 - ``composer install``
-- ``npm install``
+- ``npm ci``
 
 ### Run for development
 
@@ -20,7 +20,7 @@ Tool for managing de-minimis grants.
 
 ### Run for production
 
-- ``npm run prod`` to run laravel mix to compile css, js and other assets
+- ``npm run build`` to run laravel mix to compile css, js and other assets
 - ``php artisan storage:link`` to link storage folder to public assets
 - ``php artisan migrate`` to create all migrations
 - Point nginx or other server to ``/public`` ([more info here](https://laravel.com/docs/0.x/deployment))
