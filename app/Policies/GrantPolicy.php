@@ -14,26 +14,26 @@ class GrantPolicy
 
     public function viewAny(User $user): Response|bool
     {
-        return true;
+        return $user->can('view any grants');
     }
 
-    public function view(User $user, Grant $grant): Response|bool
+    public function view(User $user): Response|bool
     {
-        return true;
+        return $user->can('view any grants');
     }
 
-    public function create(User $user, ?Company $company = null): Response|bool
+    public function create(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage grants');
     }
 
-    public function update(User $user, Grant $grant): Response|bool
+    public function update(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage grants');
     }
 
-    public function delete(User $user, Grant $grant): Response|bool
+    public function delete(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage grants');
     }
 }

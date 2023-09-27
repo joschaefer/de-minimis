@@ -13,26 +13,26 @@ class CompanyPolicy
 
     public function viewAny(User $user): Response|bool
     {
-        return true;
+        return $user->can('view any company');
     }
 
-    public function view(User $user, Company $company): Response|bool
+    public function view(User $user): Response|bool
     {
-        return true;
+        return $user->can('view any company');
     }
 
     public function create(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage companies');
     }
 
-    public function update(User $user, Company $company): Response|bool
+    public function update(User $user): Response|bool
     {
-        return false;
+        return $user->can('manage companies');
     }
 
-    public function delete(User $user, Company $company): Response|bool
+    public function delete(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage companies');
     }
 }
