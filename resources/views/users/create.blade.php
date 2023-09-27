@@ -21,4 +21,17 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md mb-3">
+            <div class="form-floating">
+                <select name="role_id" class="form-select" aria-label="Rolle">
+                    <option value="">– keine Rolle –</option>
+                    @foreach(\Spatie\Permission\Models\Role::all()->sortBy('name') as $role)
+                        <option value="{{ $role->id }}" {{ old('role_id', $user->roles->first()?->id) == $role->id ? 'selected' : '' }}>{{ ucfirst($role->name) }}</option>
+                    @endforeach
+                </select>
+                <label>{{ __('Role') }} ({{ __('optional') }})</label>
+            </div>
+        </div>
+    </div>
 </x-modal>
