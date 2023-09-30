@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property string $id
@@ -27,7 +28,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, HasUuid, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasUuid, Notifiable, TwoFactorAuthenticatable, HasRoles;
 
     /**
      * @var array<int, string>

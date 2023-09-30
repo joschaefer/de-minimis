@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class);
+    }
+
     public function index(): View
     {
         return view('categories.index', [
@@ -21,21 +26,12 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(CategoryRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255|unique:categories',
-        ]);
-
-        $category = new Category($validated);
+        $category = new Category($request->validated());
         $category->save();
 
-        return redirect()->route('categories.show', $category)->with('success', __('Category saved.'));
-    }
-
-    public function show(Category $category): View
-    {
-        return view('categories.show', compact('category'));
+        return redirect()->route('categories.index')->with('success', __('Category saved.'));
     }
 
     public function edit(Category $category): View
@@ -43,15 +39,11 @@ class CategoryController extends Controller
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255|unique:categories,name,' . $category->id,
-        ]);
+        $category->update($request->validated());
 
-        $category->update($validated);
-
-        return redirect()->route('categories.show', $category)->with('success', __('Category updated.'));
+        return redirect()->route('categories.index')->with('success', __('Category updated.'));
     }
 
     public function destroy(Category $category): RedirectResponse

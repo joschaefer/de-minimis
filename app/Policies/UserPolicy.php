@@ -11,28 +11,23 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): Response|bool
+    public function viewAny(User $user): bool
     {
-        return true;
+        return $user->can('manage users');
     }
 
-    public function view(User $user, Category $category): Response|bool
+    public function create(User $user): bool
     {
-        return false;
+        return $user->can('manage users');
     }
 
-    public function create(User $user): Response|bool
+    public function update(User $user): bool
     {
-        return true;
+        return $user->can('manage users');
     }
 
-    public function update(User $user, Category $category): Response|bool
+    public function delete(User $user): bool
     {
-        return false;
-    }
-
-    public function delete(User $user, Category $category): Response|bool
-    {
-        return false;
+        return $user->can('manage users');
     }
 }

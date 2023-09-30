@@ -75,5 +75,22 @@
     "Company saved.": "Firma gespeichert.",
     "Import grants": "Zuwendungen importieren",
     "Import": "Importieren",
-    "Could not read file.": "Datei konnte nicht gelesen werden."
+    "Could not read file.": "Datei konnte nicht gelesen werden.",
+    "Role": "Rolle",
+    "Delete": "Löschen",
+    "Are you sure you want to delete this user?": "Bist du sicher, dass du diese:n Benutzer:in löschen willst?",
+    "Edit :company": ":company bearbeiten",
+    "Company updated.": "Firma aktualisiert.",
+    "Edit grant": "Zuwendung bearbeiten",
+    "Grant updated.": "Zuwendung aktualisiert.",
+    "Are you sure you want to delete this grant?": "Bist du sicher, dass du diese Zuwendung löschen willst?",
+    "Grant deleted.": "Zuwendung gelöscht.",
+    "Category saved.": "Kategorie gespeichert.",
+    "Category deleted.": "Kategorie gelöscht.",
+    "Category updated.": "Kategorie aktualisiert.",
+    "Are you sure you want to delete this category?": "Bist du sicher, dass du diese Kategorie löschen willst?",
+    "Edit category": "Kategorie bearbeiten",
+    "Add category": "Kategorie hinzufügen",
+    "Categories": "Kategorien",
+    "categories found": "Kategorien gefunden"
 }

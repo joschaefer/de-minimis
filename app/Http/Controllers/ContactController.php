@@ -10,6 +10,11 @@ use Illuminate\View\View;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Contact::class);
+    }
+
     public function index(): View
     {
         return view('contacts.index', [

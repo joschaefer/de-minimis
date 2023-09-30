@@ -13,26 +13,26 @@ class CategoryPolicy
 
     public function viewAny(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage categories');
     }
 
-    public function view(User $user, Category $category): Response|bool
+    public function view(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage categories');
     }
 
     public function create(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage categories');
     }
 
-    public function update(User $user, Category $category): Response|bool
+    public function update(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage categories');
     }
 
-    public function delete(User $user, Category $category): Response|bool
+    public function delete(User $user): Response|bool
     {
-        return true;
+        return $user->can('manage categories');
     }
 }

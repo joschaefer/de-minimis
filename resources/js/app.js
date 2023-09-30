@@ -32,3 +32,15 @@ document.querySelectorAll('[data-search]').forEach((search) => {
     });
 
 });
+
+window.confirmModal = (e) => {
+    if (!confirm(e.currentTarget.dataset.confirm)) {
+        e.preventDefault();
+    }
+}
+
+document.querySelectorAll('[data-confirm]').forEach((elem) => {
+    elem.addEventListener('click', window.confirmModal);
+});
+
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(elem => new bootstrap.Tooltip(elem, {container: 'body'}));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GrantRequest;
 use App\Models\Company;
 use App\Models\Grant;
 use App\Services\SpreadsheetParser;
@@ -12,6 +13,11 @@ use PhpOffice\PhpSpreadsheet\Exception;
 
 class GrantController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Grant::class);
+    }
+
     public function index(?Company $company = null): View
     {
         if ($company) {
@@ -26,29 +32,12 @@ class GrantController extends Controller
         ]);
     }
 
-    public function create(Company $company): View
+    public function store(GrantRequest $request, ?Company $company = null): RedirectResponse
     {
-        return view('grants.create', compact('company'));
-    }
-
-    public function store(Request $request, ?Company $company = null): RedirectResponse
-    {
-        $rules = [
-            'description' => 'required|max:255',
-            'amount' => 'required|numeric',
-            'start' => 'required|date:Y-m-d',
-            'end' => 'nullable|date:Y-m-d|after:start',
-            'category_id' => 'required|exists:categories,id',
-        ];
-
-        $rules += is_null($company)
-            ? ['company_id' => 'required|exists:companies,id']
-            : ['company_id' => 'sometimes|in:' . $company->id];
-
-        $validated = $request->validate($rules);
+        $validated = $request->validated();
 
         if (is_null($company)) {
-            $company = Company::query()->find($validated['company_id']);
+            $company = Company::query()->find($request->company_id);
         }
 
         $grant = new Grant($validated);
@@ -120,17 +109,9 @@ class GrantController extends Controller
         return view('grants.edit', compact('grant'));
     }
 
-    public function update(Request $request, Grant $grant): RedirectResponse
+    public function update(GrantRequest $request, Grant $grant): RedirectResponse
     {
-        $validated = $request->validate([
-            'description' => 'required|max:255',
-            'amount' => 'required|numeric',
-            'start' => 'required|date:Y-m-d',
-            'end' => 'required|date:Y-m-d|after:start',
-            'category_id' => 'required|exists:categories,id',
-        ]);
-
-        $grant->update($validated);
+        $grant->update($request->validated());
 
         return redirect()->route('companies.show', $grant->company)->with('success', __('Grant updated.'));
     }

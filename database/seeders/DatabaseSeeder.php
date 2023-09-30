@@ -10,16 +10,20 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        $this->call(CategorySeeder::class);
+        $this->call([
+            PermissionSeeder::class,
+            CategorySeeder::class,
+        ]);
 
-        User::factory()
+        $admin = User::factory()
             ->create([
                  'last_name' => 'Mustermann',
                  'first_name' => 'Max',
                  'email' => 'test@example.com',
             ]);
+        $admin->assignRole('admin');
 
         User::factory(3)
             ->create();
