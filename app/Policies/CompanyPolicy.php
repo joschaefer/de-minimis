@@ -23,7 +23,7 @@ class CompanyPolicy
 
     public function create(User $user): Response|bool
     {
-        return $user->can('manage companies');
+        return $user->can('manage companies') || $user->can('add companies');
     }
 
     public function update(User $user): Response|bool

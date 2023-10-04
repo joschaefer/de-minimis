@@ -19,14 +19,24 @@ class PermissionSeeder extends Seeder
         /** @var Role $roleAdmin */
         $roleAdmin = Role::create(['name' => 'admin']);
 
+        /** @var Role $roleEditor */
+        $roleEditor = Role::create(['name' => 'editor']);
+
+        /** @var Role $roleManager */
+        $roleManager = Role::create(['name' => 'manager']);
+
         Permission::create(['name' => 'manage users']);
         Permission::create(['name' => 'view any company']);
+        Permission::create(['name' => 'add companies']);
         Permission::create(['name' => 'manage companies']);
-        Permission::create(['name' => 'view any grants']);
+        Permission::create(['name' => 'view any grant']);
+        Permission::create(['name' => 'add grants']);
         Permission::create(['name' => 'manage grants']);
         Permission::create(['name' => 'manage categories']);
 
         $roleViewer->givePermissionTo(['view any company', 'view any grants']);
+        $roleEditor->givePermissionTo(['view any company', 'view any grants', 'add companies', 'add grants']);
+        $roleManager->givePermissionTo(['view any company', 'view any grants', 'manage companies', 'manage grants']);
         $roleAdmin->givePermissionTo(Permission::all());
     }
 }
