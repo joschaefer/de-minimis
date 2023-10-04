@@ -34,9 +34,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'manage grants']);
         Permission::create(['name' => 'manage categories']);
 
-        $roleViewer->givePermissionTo(['view any company', 'view any grants']);
-        $roleEditor->givePermissionTo(['view any company', 'view any grants', 'add companies', 'add grants']);
-        $roleManager->givePermissionTo(['view any company', 'view any grants', 'manage companies', 'manage grants']);
+        $roleViewer->givePermissionTo(['view any company', 'view any grant']);
+        $roleEditor->givePermissionTo(['view any company', 'view any grant', 'add companies', 'add grants']);
+        $roleManager->givePermissionTo(['manage companies', 'manage grants']);
         $roleAdmin->givePermissionTo(Permission::all());
     }
 }

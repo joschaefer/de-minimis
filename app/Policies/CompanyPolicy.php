@@ -13,17 +13,17 @@ class CompanyPolicy
 
     public function viewAny(User $user): Response|bool
     {
-        return $user->can('view any company');
+        return $user->can('view any company') || $user->can('manage companies');
     }
 
     public function view(User $user): Response|bool
     {
-        return $user->can('view any company');
+        return $user->can('view any company') || $user->can('manage companies');
     }
 
     public function create(User $user): Response|bool
     {
-        return $user->can('manage companies') || $user->can('add companies');
+        return $user->can('add companies') || $user->can('manage companies');
     }
 
     public function update(User $user): Response|bool

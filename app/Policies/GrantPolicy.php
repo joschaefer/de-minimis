@@ -14,17 +14,17 @@ class GrantPolicy
 
     public function viewAny(User $user): Response|bool
     {
-        return $user->can('view any grant');
+        return $user->can('view any grant') || $user->can('manage grants');
     }
 
     public function view(User $user): Response|bool
     {
-        return $user->can('view any grant');
+        return $user->can('view any grant') || $user->can('manage grants');
     }
 
     public function create(User $user): Response|bool
     {
-        return $user->can('manage grants') || $user->can('add grants');
+        return $user->can('add grants') || $user->can('manage grants');
     }
 
     public function update(User $user): Response|bool
