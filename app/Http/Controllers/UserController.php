@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('users.index', [
-            'users' => User::query()->orderByName()->get(),
+            'users' => User::withTrashed()->orderByName()->get(),
         ]);
     }
 
@@ -62,5 +63,17 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', __('User deleted.'));
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function restore(User $user): RedirectResponse
+    {
+        $this->authorize('restore', $user);
+
+        $user->restore();
+
+        return redirect()->route('users.index')->with('success', __('User restored.'));
     }
 }

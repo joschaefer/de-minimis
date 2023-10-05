@@ -26,8 +26,21 @@ class UserPolicy
         return $user->can('manage users');
     }
 
-    public function delete(User $user): bool
+    public function delete(User $user, User $model): bool
     {
+        if ($model->trashed()) {
+            return false;
+        }
+
+        return $user->can('manage users');
+    }
+
+    public function restore(User $user, User $model): bool
+    {
+        if (!$model->trashed()) {
+            return false;
+        }
+
         return $user->can('manage users');
     }
 }

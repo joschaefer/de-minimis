@@ -26,7 +26,7 @@
             </td>
             <td>
                 @if($grant->category)
-                    <x-badge color="secondary">{{ $grant->category->name }}</x-badge>
+                    <x-badge color="{{ $grant->category->trashed() ? 'warning' : 'secondary' }}">{{ $grant->category->name }}</x-badge>
                 @endif
             </td>
             @if($showCompany ?? true)

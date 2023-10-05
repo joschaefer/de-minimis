@@ -28,7 +28,7 @@ class GrantController extends Controller
         }
 
         return view('grants.index', [
-            'grants' => Grant::query()->orderByDate()->get(),
+            'grants' => Grant::query()->has('company')->orderByDate()->get(),
         ]);
     }
 

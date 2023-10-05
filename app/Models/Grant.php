@@ -43,7 +43,7 @@ class Grant extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function company(): BelongsTo
@@ -53,7 +53,7 @@ class Grant extends Model
 
     public function created_by(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_id');
+        return $this->belongsTo(User::class, 'created_by_id')->withTrashed();
     }
 
     public function scopeOrderByDate(Builder $query): Builder

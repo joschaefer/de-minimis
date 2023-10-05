@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', fn() => view('home'))->name('home');
+    Route::post('/users/{user}/restore', [UserController::class, 'restore'])->withTrashed()->name('users.restore');
     Route::resource('users', UserController::class)->except(['show', 'create']);
     Route::resource('companies', CompanyController::class)->except(['create']);
     Route::post('/categories/{category}/restore', [CategoryController::class, 'restore'])->withTrashed()->name('categories.restore');
