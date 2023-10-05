@@ -7,7 +7,7 @@
             <h1 class="display-5">{{ __('Edit :company', ['company' => $company->name]) }}</h1>
         </header>
 
-        <x-status :status="session('status')" class="mb-3" />
+        <x-status :status="session('success')" class="mb-3" />
         <x-errors :errors="$errors" class="mb-3" />
 
         <div class="mb-3">

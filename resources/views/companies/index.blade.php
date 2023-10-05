@@ -10,7 +10,7 @@
         @endcan
     </div>
 
-    <x-status :status="session('status')" class="mb-3" />
+    <x-status :status="session('success')" class="mb-3" />
 
     <table class="table align-middle" id="companies">
         <thead>

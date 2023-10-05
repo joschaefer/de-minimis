@@ -7,7 +7,7 @@
             <h1>{{ __('Edit grant')  }}</h1>
         </header>
 
-        <x-status :status="session('status')" class="mb-3" />
+        <x-status :status="session('success')" class="mb-3" />
         <x-errors :errors="$errors" class="mb-3" />
 
         <div class="form-floating mb-3">
@@ -18,7 +18,7 @@
         </div>
         <div class="form-floating mb-3">
             <select name="category_id" class="form-select" aria-label="{{ __('Category') }}" required>
-                <option value="" disabled hidden @if(is_null($grant->category)) selected @endif>{{ __('Please select') }}</option>
+                <option value="" disabled hidden @if(is_null($grant->category) || $grant->category->trashed()) selected @endif>{{ __('Please select') }}</option>
                 @foreach(\App\Models\Category::query()->orderBy('name')->get() as $category)
                     <option value="{{ $category->id }}" @if(old('category_id', $grant->category_id) === $category->id) selected @endif>{{ $category->name }}</option>
                 @endforeach

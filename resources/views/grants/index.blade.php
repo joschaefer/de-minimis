@@ -9,7 +9,7 @@
         @endcan
     </div>
 
-    <x-status :status="session('status')" class="mb-3" />
+    <x-status :status="session('success')" class="mb-3" />
 
     @include('grants.table')
 
