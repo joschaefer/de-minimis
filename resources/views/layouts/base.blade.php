@@ -19,6 +19,9 @@
                 @can('viewAny', \App\Models\Grant::class)
                     <li><a href="{{ route('grants.index') }}" class="nav-link px-2 {{ request()->routeIs('grants.*') ? 'link-secondary' : 'link-dark' }}">{{ __('Grants') }}</a></li>
                 @endcan
+                @can('viewAny', \App\Models\Category::class)
+                    <li><a href="{{ route('categories.index') }}" class="nav-link px-2 {{ request()->routeIs('categories.*') ? 'link-secondary' : 'link-dark' }}">{{ __('Categories') }}</a></li>
+                @endcan
                 @can('viewAny', \App\Models\User::class)
                     <li><a href="{{ route('users.index') }}" class="nav-link px-2 {{ request()->routeIs('users.*') ? 'link-secondary' : 'link-dark' }}">{{ __('Users') }}</a></li>
                 @endcan

@@ -31,8 +31,21 @@ class CategoryPolicy
         return $user->can('manage categories');
     }
 
-    public function delete(User $user): Response|bool
+    public function delete(User $user, Category $category): Response|bool
     {
+        if ($category->trashed()) {
+            return false;
+        }
+
+        return $user->can('manage categories');
+    }
+
+    public function restore(User $user, Category $category): Response|bool
+    {
+        if (!$category->trashed()) {
+            return false;
+        }
+
         return $user->can('manage categories');
     }
 }

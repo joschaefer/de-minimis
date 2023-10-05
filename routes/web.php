@@ -10,6 +10,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', fn() => view('home'))->name('home');
     Route::resource('users', UserController::class)->except(['show', 'create']);
     Route::resource('companies', CompanyController::class)->except(['create']);
+    Route::post('/categories/{category}/restore', [CategoryController::class, 'restore'])->withTrashed()->name('categories.restore');
     Route::resource('categories', CategoryController::class)->except(['show', 'create']);
     // Route::resource('companies.contacts', ContactController::class)->shallow();
     Route::resource('companies.grants', GrantController::class)->shallow();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         return view('categories.index', [
-            'categories' => Category::query()->orderByName()->get(),
+            'categories' => Category::withTrashed()->orderByName()->get(),
         ]);
     }
 
@@ -51,5 +52,17 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('categories.index')->with('success', __('Category deleted.'));
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function restore(Category $category): RedirectResponse
+    {
+        $this->authorize('restore', $category);
+
+        $category->restore();
+
+        return redirect()->route('categories.index')->with('success', __('Category restored.'));
     }
 }
